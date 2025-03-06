@@ -6,18 +6,22 @@ We use docker container to create a Ruby env, which facilites the development of
 - bundler
 
 
-## Instructions 
-1. `cd` to the project directory and create an ruby env image
+## Instructions
+1. copy your project to the `app` directory. 
+
+2. `cd` to the project directory and create an ruby env image
 
     ```bash
     $ docker build -t my-ruby-env .
     ```
 
-2. create a docker container, note the volum mount and port mapping.
+3. create a docker container, note the volum mount and port mapping.
 
     ```bash
     $ docker run --name jekyll-devbox -v ./app:/app -p 4000:4000 -it my-ruby-env /usr/bin/bash
     ```
+
+**Note:** the volume mapping allows you to modify your project conveinently. Any modifications on your local machine will be reflected to the docker container.
 
 ### Special Instructions for Jekyll Projects
 Since Jekyll server uses a loopback IP (usually `127.0.0.1:4000`) to publish websites for security reasons, the content can only be access within the container. Therefore, we cannot access the content from the host's web browser by visiting `127.0.0.1:4000`. To solve this, we need to configure the server to listen on `0.0.0.0` so that it can accept external connections from the host. 
