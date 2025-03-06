@@ -11,4 +11,4 @@ RUN gem install bundler
 
 WORKDIR /app
 COPY ./app ./
-CMD [ "irb" ]
+CMD [ "/usr/bin/bash" ]
